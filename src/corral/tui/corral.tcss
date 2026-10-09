@@ -1,0 +1,386 @@
+Screen {
+    background: $background;
+    color: $foreground;
+    layers: base overlay;
+}
+
+/* ---------------------------------------------------------------- top bar */
+
+TopBar {
+    dock: top;
+    height: 1;
+    padding: 0 1;
+    background: $surface;
+    color: $foreground;
+}
+
+/* ---------------------------------------------------------------- body */
+
+#body {
+    height: 1fr;
+}
+
+#transcript {
+    height: 1fr;
+    padding: 1 2 0 2;
+    scrollbar-size-vertical: 1;
+}
+
+Sidebar {
+    width: 38;
+    height: 1fr;
+    padding: 1 2;
+    background: $surface;
+    border-left: vkey $rule;
+    scrollbar-size-vertical: 1;
+}
+
+Sidebar.-hidden {
+    display: none;
+}
+
+Sidebar .section {
+    height: auto;
+    margin-bottom: 1;
+}
+
+Sidebar #changes-section:hover {
+    background: $boost;
+}
+
+/* ---------------------------------------------------------------- transcript items */
+
+UserMsg {
+    height: auto;
+    margin: 1 0 1 0;
+    padding: 0 1;
+    border-left: outer $you;
+    color: $foreground;
+}
+
+AssistantMsg {
+    height: auto;
+    margin: 1 0 1 0;
+    padding: 0 0 0 2;
+    background: transparent;
+}
+
+AssistantMsg MarkdownBlock {
+    margin: 0;
+}
+
+AssistantMsg MarkdownFence {
+    margin: 1 0;
+}
+
+Note {
+    height: auto;
+    padding: 0 0 0 2;
+    margin: 1 0 1 0;
+    color: $text-muted;
+    text-style: italic;
+}
+
+ToolBlock {
+    height: auto;
+    margin: 0 0 0 2;
+}
+
+ToolBlock .tool-head {
+    height: 1;
+}
+
+ToolBlock .tool-head:hover {
+    background: $boost;
+}
+
+ToolBlock .tool-body {
+    height: auto;
+    max-height: 24;
+    margin: 0 0 1 2;
+    padding: 0 1;
+    border-left: vkey $rule;
+    color: $text-muted;
+    overflow-y: auto;
+    display: none;
+}
+
+ToolBlock.-open .tool-body {
+    display: block;
+}
+
+ToolBlock.-expanded .tool-body {
+    max-height: 200;
+}
+
+LogLine {
+    height: 1;
+    padding: 0 0 0 2;
+    color: $text-muted;
+}
+
+NoticeLine {
+    height: auto;
+    margin: 1 0 1 2;
+}
+
+/* ---------------------------------------------------------------- composer */
+
+#bottom {
+    dock: bottom;
+    height: auto;
+    padding: 0 1;
+    background: $background;
+}
+
+#suggest {
+    height: auto;
+    max-height: 8;
+    margin: 0 1;
+    background: $surface;
+    border: none;
+    display: none;
+}
+
+#suggest.-visible {
+    display: block;
+}
+
+Composer {
+    height: auto;
+    min-height: 3;
+    max-height: 12;
+    border: round $border;
+    background: $background;
+    padding: 0 1;
+}
+
+Composer:focus {
+    border: round $cell;
+}
+
+Composer.-busy {
+    border: round $border;
+}
+
+#hints {
+    height: 1;
+    padding: 0 2;
+    color: $text-muted;
+}
+
+/* ---------------------------------------------------------------- review */
+
+ReviewScreen {
+    background: $background;
+}
+
+ReviewScreen #review-head {
+    height: 3;
+    padding: 1 2 0 2;
+}
+
+ReviewScreen #review-body {
+    height: 1fr;
+}
+
+ReviewScreen #files {
+    width: 44;
+    height: 1fr;
+    background: $surface;
+    border-right: vkey $rule;
+    padding: 0;
+}
+
+ReviewScreen #files > ListItem {
+    padding: 0 1;
+    height: auto;
+    background: $surface;
+}
+
+ReviewScreen #files > ListItem.-highlight {
+    background: $boost;
+}
+
+ReviewScreen #files:focus > ListItem.-highlight {
+    background: $gate 18%;
+}
+
+ReviewScreen #diff-wrap {
+    height: 1fr;
+    padding: 0 2;
+}
+
+ReviewScreen #risk {
+    height: auto;
+    margin: 1 0 0 0;
+    padding: 0 1;
+    border-left: outer $gate;
+    display: none;
+}
+
+ReviewScreen #risk.-visible {
+    display: block;
+}
+
+ReviewScreen #diff {
+    height: auto;
+    margin: 1 0;
+}
+
+ReviewScreen #review-hints {
+    dock: bottom;
+    height: 1;
+    padding: 0 2;
+    background: $surface;
+    color: $text-muted;
+}
+
+/* ---------------------------------------------------------------- modals */
+
+ModalScreen {
+    align: center middle;
+    background: $background 70%;
+}
+
+.dialog {
+    width: 72;
+    max-width: 90%;
+    height: auto;
+    max-height: 90%;
+    padding: 1 2;
+    background: $surface;
+    border: round $border;
+}
+
+.dialog.-gate {
+    border: round $gate;
+}
+
+.dialog .eyebrow {
+    color: $text-muted;
+    text-style: bold;
+    margin-bottom: 1;
+}
+
+.dialog .body {
+    height: auto;
+    margin-bottom: 1;
+}
+
+.dialog .muted {
+    color: $text-muted;
+}
+
+.dialog .reason {
+    margin: 0 0 1 0;
+    padding: 0 1;
+    border-left: outer $border;
+    height: auto;
+}
+
+.dialog SelectionList {
+    height: auto;
+    max-height: 12;
+    margin-bottom: 1;
+    background: $surface;
+    border: none;
+}
+
+.dialog OptionList {
+    height: auto;
+    max-height: 16;
+    background: $surface;
+    border: none;
+    margin-bottom: 1;
+}
+
+.dialog .buttons {
+    height: auto;
+    align-horizontal: right;
+}
+
+.dialog Button {
+    margin-left: 1;
+    min-width: 12;
+}
+
+.dialog #notes-text {
+    height: auto;
+    max-height: 24;
+    background: $background;
+    padding: 0 1;
+    margin-bottom: 1;
+}
+
+Button {
+    border: none;
+    height: 1;
+    padding: 0 2;
+    background: $panel;
+    color: $foreground;
+    text-style: none;
+}
+
+Button:hover {
+    background: $panel-lighten-1;
+}
+
+Button:focus {
+    text-style: bold;
+    background: $panel-lighten-2;
+}
+
+Button.-primary {
+    background: $cell 30%;
+    color: $foreground;
+}
+
+Button.-primary:hover, Button.-primary:focus {
+    background: $cell;
+    color: $background;
+}
+
+Button.-gate {
+    background: $gate 30%;
+    color: $foreground;
+}
+
+Button.-gate:hover, Button.-gate:focus {
+    background: $gate;
+    color: $background;
+}
+
+Toast {
+    background: $surface;
+    border-left: outer $cell;
+}
+
+Toast.-warning {
+    border-left: outer $gate;
+}
+
+Toast.-error {
+    border-left: outer $blocked;
+}
+
+.dialog SelectionList > .option-list--option-highlighted,
+.dialog OptionList > .option-list--option-highlighted,
+#suggest > .option-list--option-highlighted {
+    background: $boost;
+    color: $foreground;
+    text-style: bold;
+}
+
+.dialog SelectionList > .selection-list--button,
+.dialog SelectionList > .selection-list--button-highlighted {
+    background: $boost;
+    color: $faint;
+}
+
+.dialog SelectionList > .selection-list--button-selected,
+.dialog SelectionList > .selection-list--button-selected-highlighted {
+    background: $boost;
+    color: $gate;
+    text-style: bold;
+}
